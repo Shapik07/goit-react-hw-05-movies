@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Navigation, Header, StyledLink } from './AppBar.styled';
 
 const navigationItems = [
   { href: 'home', text: 'Home' },
@@ -7,14 +7,14 @@ const navigationItems = [
 
 export const AppBar = () => {
   return (
-    <header>
-      <nav>
+    <Header>
+      <Navigation>
         {navigationItems.map(({ href, text }) => (
-          <NavLink to={href} key={href}>
+          <StyledLink to={href} key={href}>
             {text}
-          </NavLink>
+          </StyledLink>
         ))}
-      </nav>
-    </header>
+      </Navigation>
+    </Header>
   );
 };

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Header = styled.div`
   display: flex;
-  height: 64px;
-  background-color: gray;
+  height: 76px;
+  background-color: black;
   width: 100%;
   align-items: center;
 `;
