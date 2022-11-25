@@ -11,6 +11,7 @@ export const MovieLink = styled(NavLink)`
   font-size: 24px;
   text-decoration: none;
   font-weight: bold;
+  color: black;
 
   :hover,
   :focus {

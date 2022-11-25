@@ -5,6 +5,9 @@ export const Navigation = styled.nav`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  overflow: hidden;
+  padding-top: 15px;
+  padding-bottom: 15px;
 `;
 
 export const Header = styled.header`

@@ -18,7 +18,9 @@ export const MovieList = () => {
   return (
     <Container>
       {movies.map(({ title, id }) => (
-        <MovieLink key={id}>{title}</MovieLink>
+        <MovieLink key={id} id={id} to={`/movies/${id}`}>
+          {title}
+        </MovieLink>
       ))}
     </Container>
   );
