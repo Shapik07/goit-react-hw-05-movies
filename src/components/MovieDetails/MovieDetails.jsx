@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { GetMovieDetails } from 'services/api';
 import {
   Container,
   Card,
+  PictureThumb,
   Picture,
   InfoList,
   ListItem,
   MovieTitle,
+  Info,
+  InfoLink,
+  AdditionalInfoList,
+  Title,
 } from './MovieDetails.styled';
 
 export const MovieDetails = () => {
@@ -38,27 +43,53 @@ export const MovieDetails = () => {
   };
 
   return (
-    <Container>
-      {movie && (
-        <Card>
-          <Picture src={IMG_URL + poster_path} title={original_title}></Picture>
+    <>
+      <Container>
+        {movie && (
+          <Card>
+            <PictureThumb>
+              <Picture
+                src={
+                  poster_path
+                    ? IMG_URL + poster_path
+                    : 'https://cloupyblob.blob.core.windows.net/cloupy/image-not-found.png'
+                }
+                title={original_title}
+              ></Picture>
+            </PictureThumb>
+            <InfoList>
+              <ListItem>
+                <MovieTitle>{original_title}</MovieTitle>
+              </ListItem>
+              <ListItem>
+                User core:
+                <Info> {Math.round(vote_average * 10)} %</Info>
+              </ListItem>
+              <ListItem>
+                Overview:
+                <Info> {overview}</Info>
+              </ListItem>
+              <ListItem>
+                Genres:
+                <Info> {getGenres()}</Info>
+              </ListItem>
+            </InfoList>
+          </Card>
+        )}
+      </Container>
 
-          <InfoList>
-            <ListItem>
-              <MovieTitle>{original_title}</MovieTitle>
-            </ListItem>
-            <ListItem>
-              User core: <span>{Math.round(vote_average * 10)} %</span>
-            </ListItem>
-            <ListItem>
-              Overview: <span>{overview}</span>
-            </ListItem>
-            <ListItem>
-              Genres: <span>{getGenres()}</span>
-            </ListItem>
-          </InfoList>
-        </Card>
-      )}
-    </Container>
+      <Container>
+        <Title>Additional information</Title>
+        <AdditionalInfoList>
+          <ListItem>
+            <InfoLink to="cast">Cast</InfoLink>
+          </ListItem>
+          <ListItem>
+            <InfoLink to="reviews">Reviews</InfoLink>
+          </ListItem>
+        </AdditionalInfoList>
+      </Container>
+      <Outlet />
+    </>
   );
 };

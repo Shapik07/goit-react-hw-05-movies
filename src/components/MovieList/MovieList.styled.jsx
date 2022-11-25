@@ -7,6 +7,14 @@ export const Container = styled.div`
   align-items: center;
 `;
 
+export const List = styled.ul`
+  list-style: none;
+`
+
+export const ListItem = styled.li`
+  
+`
+
 export const MovieLink = styled(NavLink)`
   font-size: 24px;
   text-decoration: none;

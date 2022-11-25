@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { GetTrendingMovies } from 'services/api';
-import { Container, MovieLink } from './MovieList.styled';
+import { Container, MovieLink, List, ListItem } from './MovieList.styled';
 
 export const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -17,11 +17,15 @@ export const MovieList = () => {
 
   return (
     <Container>
-      {movies.map(({ title, id }) => (
-        <MovieLink key={id} id={id} to={`/movies/${id}`}>
-          {title}
-        </MovieLink>
-      ))}
+      <List>
+        {movies.map(({ title, id }) => (
+          <ListItem key={id}>
+            <MovieLink id={id} to={`/movies/${id}`}>
+              {title}
+            </MovieLink>
+          </ListItem>
+        ))}
+      </List>
     </Container>
   );
 };
