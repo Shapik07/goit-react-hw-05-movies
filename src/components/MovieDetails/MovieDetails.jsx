@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { GetMovieDetails } from 'services/api';
+import { useLocation } from 'react-router-dom';
+
 import {
   Container,
   Card,
@@ -13,11 +15,13 @@ import {
   InfoLink,
   AdditionalInfoList,
   Title,
+  Button,
 } from './MovieDetails.styled';
 
 export const MovieDetails = () => {
   const { details } = useParams();
   const [movie, setMovie] = useState([]);
+  const location = useLocation();
 
   const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 
@@ -45,6 +49,7 @@ export const MovieDetails = () => {
   return (
     <>
       <Container>
+        <Button to={location.state.from}>Go back</Button>
         {movie && (
           <Card>
             <PictureThumb>

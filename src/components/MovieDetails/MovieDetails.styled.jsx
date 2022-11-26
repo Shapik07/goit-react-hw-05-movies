@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -8,6 +8,25 @@ export const Container = styled.div`
 `;
 
 export const PictureThumb = styled.div``;
+
+export const Button = styled(Link)`
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: black;
+  font-weight: bold;
+  padding: 5px;
+  text-decoration: none;
+  border: 3px solid black;
+  border-radius: 5px;
+  margin-left: 30px;
+  margin-right: auto;
+
+  :hover {
+    background-color: green;
+    color: white;
+    border: 3px solid green;
+  }
+`;
 
 export const Card = styled.article`
   display: flex;

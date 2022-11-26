@@ -1,16 +1,22 @@
+import {
+  Container,
+  FormSearch,
+  SearchInput,
+  SearchButton,
+} from './SearchForm.styled';
+
 export const SearchForm = ({ onSubmit }) => {
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
+    <Container>
+      <FormSearch onSubmit={onSubmit}>
+        <SearchInput
           type="text"
-          autoComplete="off"
           autoFocus
           name="input"
           placeholder="Enter movie title"
         />
-        <button type="submit">Search</button>
-      </form>
-    </div>
+        <SearchButton type="submit">Search</SearchButton>
+      </FormSearch>
+    </Container>
   );
 };

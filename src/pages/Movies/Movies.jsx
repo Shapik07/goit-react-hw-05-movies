@@ -1,35 +1,42 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { GetSearchMovies } from 'services/api';
 import { SearchForm } from 'components/SearchForm/SearchForm';
+import { Container, List, ListItem, MovieLink } from './Movies.styled';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 export const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [searchparams, setSearchParams] = useSearchParams();
+  const location = useLocation();
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
     const query = form.input.value.trim();
 
-    if (!query) {
+    if (!searchparams) {
       return;
     } else {
       GetSearchMovies(query).then(data => setMovies(data.results));
+      setSearchParams({ query: query });
+      form.reset();
     }
   };
 
   return (
-    <div>
+    <Container>
       <SearchForm onSubmit={handleSubmit} />
       {movies.length > 0 && (
-        <ul>
+        <List>
           {movies.map(({ id, original_title }) => (
-            <li key={id}>
-              <NavLink to={`/movies/${id}`}>{original_title}</NavLink>
-            </li>
+            <ListItem key={id}>
+              <MovieLink to={`/movies/${id}`} state={{ from: location }}>
+                - {original_title}
+              </MovieLink>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       )}
-    </div>
+    </Container>
   );
 };
