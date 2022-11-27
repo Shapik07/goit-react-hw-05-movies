@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 export const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const location = useLocation();
-
   useEffect(() => {
     GetTrendingMovies().then(data => {
       if (data.results === 0) {

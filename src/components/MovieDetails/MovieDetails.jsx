@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { GetMovieDetails } from 'services/api';
-import { useLocation } from 'react-router-dom';
 
 import {
   Container,
@@ -18,7 +17,7 @@ import {
   Button,
 } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { details } = useParams();
   const [movie, setMovie] = useState([]);
   const location = useLocation();
@@ -45,6 +44,8 @@ export const MovieDetails = () => {
       );
     }
   };
+
+  const search = useRef(location.state?.from?.search);
 
   return (
     <>
@@ -87,10 +88,24 @@ export const MovieDetails = () => {
         <Title>Additional information</Title>
         <AdditionalInfoList>
           <ListItem>
-            <InfoLink to="cast">Cast</InfoLink>
+            <InfoLink
+              to="cast"
+              state={{
+                from: search.current ? `/movies${search.current}` : '/',
+              }}
+            >
+              Cast
+            </InfoLink>
           </ListItem>
           <ListItem>
-            <InfoLink to="reviews">Reviews</InfoLink>
+            <InfoLink
+              to="reviews"
+              state={{
+                from: search.current ? `/movies${search.current}` : '/',
+              }}
+            >
+              Reviews
+            </InfoLink>
           </ListItem>
         </AdditionalInfoList>
       </Container>
@@ -98,3 +113,5 @@ export const MovieDetails = () => {
     </>
   );
 };
+
+export default MovieDetails;

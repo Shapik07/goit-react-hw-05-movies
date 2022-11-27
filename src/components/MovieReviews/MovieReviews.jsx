@@ -8,7 +8,7 @@ import {
   AuthorReview,
 } from 'components/MovieReviews/MovieReviews.styled';
 
-export const MovieReviews = () => {
+const MovieReviews = () => {
   const { details } = useParams();
   const [reviews, setReviews] = useState([]);
 
@@ -34,3 +34,5 @@ export const MovieReviews = () => {
     </List>
   );
 };
+
+export default MovieReviews;

@@ -1,7 +1,7 @@
 import { MovieList } from 'components/MovieList/MovieList';
 import { Container, Title } from './Home.styled';
 
-export const Home = () => {
+const Home = () => {
   return (
     <Container>
       <Title>Trending today</Title>
@@ -9,3 +9,5 @@ export const Home = () => {
     </Container>
   );
 };
+
+export default Home;

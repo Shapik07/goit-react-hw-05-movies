@@ -4,7 +4,7 @@ import { SearchForm } from 'components/SearchForm/SearchForm';
 import { Container, List, ListItem, MovieLink } from './Movies.styled';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
-export const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchparams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -40,3 +40,5 @@ export const Movies = () => {
     </Container>
   );
 };
+
+export default Movies;
