@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { GetMovieCredits } from 'services/api';
@@ -20,6 +22,7 @@ const MovieCredits = () => {
   useEffect(() => {
     GetMovieCredits(details).then(data => {
       if (!data) {
+        toast.warn('Wooops, something went wrong');
         return;
       } else {
         setCredits(data.cast);
@@ -45,6 +48,7 @@ const MovieCredits = () => {
           </Info>
         </ListItem>
       ))}
+      <ToastContainer />
     </List>
   );
 };

@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { GetMovieReviews } from 'services/api';
@@ -15,6 +17,7 @@ const MovieReviews = () => {
   useEffect(() => {
     GetMovieReviews(details).then(data => {
       if (!data) {
+        toast.warn('Wooops, something went wrong');
         return;
       } else {
         setReviews(data.results);
@@ -31,6 +34,7 @@ const MovieReviews = () => {
           </Author>
         </ItemList>
       ))}
+      <ToastContainer />
     </List>
   );
 };

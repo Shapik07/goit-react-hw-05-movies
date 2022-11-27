@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState, useRef } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { GetMovieDetails } from 'services/api';
@@ -27,6 +29,7 @@ const MovieDetails = () => {
   useEffect(() => {
     GetMovieDetails(details).then(data => {
       if (!data) {
+        toast.warn('Wooops, something went wrong');
         return;
       } else {
         setMovie(data);
@@ -110,6 +113,7 @@ const MovieDetails = () => {
         </AdditionalInfoList>
       </Container>
       <Outlet />
+      <ToastContainer />
     </>
   );
 };
