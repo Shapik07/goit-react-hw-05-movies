@@ -8,6 +8,7 @@ import {
   ItemList,
   Author,
   AuthorReview,
+  TextResult,
 } from 'components/MovieReviews/MovieReviews.styled';
 
 const MovieReviews = () => {
@@ -25,7 +26,9 @@ const MovieReviews = () => {
     });
   }, [details]);
 
-  return (
+  return reviews.length === 0 ? (
+    <TextResult>We don't have any reviews for this movie :(</TextResult>
+  ) : (
     <List>
       {reviews.map(({ author, content, id }) => (
         <ItemList key={id}>

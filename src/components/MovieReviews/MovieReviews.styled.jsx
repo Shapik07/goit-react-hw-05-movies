@@ -11,6 +11,13 @@ export const ItemList = styled.li`
   border-bottom: 1px dashed black;
 `;
 
+export const TextResult = styled.p`
+  padding-left: 10px;
+
+  font-size: 24px;
+  font-weight: bold;
+`;
+
 export const Author = styled.span`
   font-size: 24px;
   font-weight: bold;
