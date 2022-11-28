@@ -1,36 +1,41 @@
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GetTrendingMovies } from 'services/api';
-import { Container, MovieLink, List, ListItem } from './MovieList.styled';
+import { MovieLink, List, ListItem } from './MovieList.styled';
+import { GetSearchMovies } from 'services/api';
 import { useLocation } from 'react-router-dom';
 
-export const MovieList = () => {
+export const MovieList = ({ query }) => {
   const [movies, setMovies] = useState([]);
   const location = useLocation();
+
   useEffect(() => {
-    GetTrendingMovies().then(data => {
-      if (data.results === 0) {
-        toast.warn('Wooops, nothing found');
-        return;
-      } else {
+    (async function getMovies() {
+      try {
+        const data = await GetSearchMovies(query);
+        if (data.results.length === 0) {
+          toast.warn('Woops, something went wrong');
+          return;
+        }
         setMovies(data.results);
+      } catch (error) {
+        toast.warn('Woops, something went wrong');
       }
-    });
-  }, []);
+    })();
+  });
 
   return (
-    <Container>
+    <ul>
       <List>
-        {movies.map(({ title, id }) => (
+        {movies.map(({ id, original_title }) => (
           <ListItem key={id}>
-            <MovieLink id={id} to={`/movies/${id}`} state={{ from: location }}>
-              {title}
+            <MovieLink to={`/movies/${id}`} state={{ from: location }}>
+              - {original_title}
             </MovieLink>
           </ListItem>
         ))}
+        <ToastContainer />
       </List>
-      <ToastContainer />
-    </Container>
+    </ul>
   );
 };

@@ -1,27 +1,23 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from 'react';
-import { GetSearchMovies } from 'services/api';
 import { SearchForm } from 'components/SearchForm/SearchForm';
-import { Container, List, ListItem, MovieLink } from './Movies.styled';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { MovieList } from 'components/MovieList/MovieList';
+import { Container } from './Movies.styled';
+import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  const [movies, setMovies] = useState([]);
-  const [searchparams, setSearchParams] = useSearchParams();
-  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
     const query = form.input.value.trim();
 
-    if (!searchparams || !query) {
+    if (!query) {
       return toast.warn('Please enter movie name');
     } else {
-      GetSearchMovies(query).then(data => setMovies(data.results));
-      setSearchParams({ query: query });
-      toast.success('Here is the search result');
+      setSearchParams({ query });
       form.reset();
     }
   };
@@ -29,17 +25,7 @@ const Movies = () => {
   return (
     <Container>
       <SearchForm onSubmit={handleSubmit} />
-      {movies.length > 0 && (
-        <List>
-          {movies.map(({ id, original_title }) => (
-            <ListItem key={id}>
-              <MovieLink to={`/movies/${id}`} state={{ from: location }}>
-                - {original_title}
-              </MovieLink>
-            </ListItem>
-          ))}
-        </List>
-      )}
+      {query && <MovieList query={query} />}
       <ToastContainer />
     </Container>
   );

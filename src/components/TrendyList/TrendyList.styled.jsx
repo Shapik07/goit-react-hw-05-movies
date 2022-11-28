@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const List = styled.ul`
   list-style: none;
 `;
@@ -19,3 +25,4 @@ export const MovieLink = styled(NavLink)`
     border-radius: 5px;
   }
 `;
+
