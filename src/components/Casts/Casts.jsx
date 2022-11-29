@@ -32,22 +32,28 @@ const MovieCredits = () => {
 
   return (
     <List>
-      {credits.map(({ profile_path, original_name, character, id }) => (
-        <ListItem key={id}>
-          <Image
-            src={
-              profile_path
-                ? IMG_URL + profile_path
-                : 'https://cloupyblob.blob.core.windows.net/cloupy/image-not-found.png'
-            }
-            alt={original_name}
-          ></Image>
-          <ActorName>{original_name}</ActorName>
-          <Info>
-            Character: <InfoText>{character}</InfoText>
-          </Info>
+      {credits.length === 0 ? (
+        <ListItem>
+          <ActorName>Actors unknown</ActorName>
         </ListItem>
-      ))}
+      ) : (
+        credits.map(({ profile_path, original_name, character, id }) => (
+          <ListItem key={id}>
+            <Image
+              src={
+                profile_path
+                  ? IMG_URL + profile_path
+                  : 'https://cloupyblob.blob.core.windows.net/cloupy/image-not-found.png'
+              }
+              alt={original_name}
+            ></Image>
+            <ActorName>{original_name}</ActorName>
+            <Info>
+              Character: <InfoText>{character}</InfoText>
+            </Info>
+          </ListItem>
+        ))
+      )}
       <ToastContainer />
     </List>
   );
