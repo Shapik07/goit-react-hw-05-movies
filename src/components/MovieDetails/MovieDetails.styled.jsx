@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink, Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -56,7 +56,7 @@ export const Info = styled.span`
   font-weight: normal;
 `;
 
-export const InfoLink = styled(NavLink)`
+export const InfoLink = styled(Link)`
   font-size: 24px;
   text-decoration: none;
   font-weight: bold;

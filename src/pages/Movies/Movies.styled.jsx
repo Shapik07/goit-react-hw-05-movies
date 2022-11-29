@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div``;
 
@@ -14,7 +14,7 @@ export const ListItem = styled.li`
   font-weight: bold;
 `;
 
-export const MovieLink = styled(NavLink)`
+export const MovieLink = styled(Link)`
   text-decoration: none;
   color: black;
 

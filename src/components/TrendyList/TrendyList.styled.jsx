@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ export const List = styled.ul`
 
 export const ListItem = styled.li``;
 
-export const MovieLink = styled(NavLink)`
+export const MovieLink = styled(Link)`
   font-size: 24px;
   text-decoration: none;
   font-weight: bold;
