@@ -11,6 +11,7 @@ import {
   ActorName,
   Info,
   InfoText,
+  ActorsUnknown,
 } from './Casts.styled';
 
 const MovieCredits = () => {
@@ -34,7 +35,7 @@ const MovieCredits = () => {
     <List>
       {credits.length === 0 ? (
         <ListItem>
-          <ActorName>Actors unknown</ActorName>
+          <ActorsUnknown>Actors unknown :(</ActorsUnknown>
         </ListItem>
       ) : (
         credits.map(({ profile_path, original_name, character, id }) => (

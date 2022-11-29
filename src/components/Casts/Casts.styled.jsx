@@ -24,6 +24,12 @@ export const ActorName = styled.p`
   margin: 12px 0;
 `;
 
+export const ActorsUnknown = styled.p`
+  font-size: 24px;
+  font-weight: bold;
+  margin: 12px 0;
+`;
+
 export const Info = styled.p`
   font-size: 16px;
   font-weight: bold;
